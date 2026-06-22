@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# pnpm store
+.pnpm-store/
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime
+dist/
+build/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS / Editor
+.zed/
+.vscode/
+
+# Mise
+mise.local.toml
+.mise.local.toml
+
+# Coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
