@@ -1,28 +1,87 @@
 # Dependencies
 node_modules/
+/node_modules
 
-# pnpm store
+# pnpm
 .pnpm-store/
+pnpm-lock.yaml
+
+# npm
+package-lock.json
+
+# yarn
+yarn.lock
 
 # Logs
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 
-# Runtime
+# Runtime/Build outputs
 dist/
 build/
 out/
+.next/
+.nuxt/
+.cache/
+.vuepress/dist/
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+
+# Next.js
+/.next/
+/out/
+
+# NestJS
+/dist/
+/build/
+*.js
+!*.config.js
+*.d.ts
+!*.config.d.ts
+
+# React Native
+/android/app/debug/
+/android/app/release/
+/ios/Pods/
+/ios/Podfile.lock
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+*.pbxuser
+*.perspectivev3
+.DS_Store
 
 # Environment variables
 .env
 .env.local
 .env.*.local
+.env.production.local
 
-# OS / Editor
-.zed/
+# IDE / Editor
 .vscode/
+.idea/
+.zed/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+.AppleDesktop
+ehthumbs.db
+Thumbs.db
+.cache
 
 # Mise
 mise.local.toml
@@ -30,7 +89,9 @@ mise.local.toml
 
 # Coverage
 coverage/
+.nyc_output/
 
 # Temporary files
 *.tmp
 *.temp
+.turbo/
