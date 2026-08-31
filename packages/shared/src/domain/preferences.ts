@@ -1,24 +1,30 @@
-/**
- * This object contains all the data relevant to the Booking preferences of the user
- * @provider: Platform for booking providers.
- * @desiredPriceRange: [0] sets the min [1] sets the max
- * @desiredFacilities: Facilities list, eg: Wi-Fi, Pool, Parking...
- * @desiredType: order of the different possible types of places, eg: Hotel, Apartment, House...
- * @desiredDistance: desired distance to the competition centre
- */
+import {
+  BookingProvider,
+  FacilityType,
+  AccommodationType,
+  TravelProvider,
+  TravelClass,
+  TravelMode,
+} from './enums.js';
 
-interface BookingPreference{
-  provider: string;
+/**
+ * Booking preferences for accommodation near a competition or training venue.
+ */
+export interface BookingPreference {
+  provider: BookingProvider;
   desiredPriceRange: [number, number];
-  desiredFacilities: string[];
-  desiredType: string[];
-  desiredDistance: number;
+  desiredFacilities: FacilityType[];
+  desiredType: AccommodationType[];
+  desiredDistanceKm: number;
 }
 
 /**
- *
+ * Travel preferences for reaching the venue.
  */
-
-interface TravelPreference{
-
+export interface TravelPreference {
+  provider: TravelProvider;
+  desiredPriceRange: [number, number];
+  desiredTier: TravelClass;
+  desiredType: TravelMode[];
+  desiredDistanceKm: number;
 }

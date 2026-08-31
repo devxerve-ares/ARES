@@ -1,4 +1,4 @@
-import { Gender, SportType, AgeCategory, WeightCategory, Expertise } from './enums';
+import { SportType, AgeCategory, WeightCategory, Expertise } from './enums.js';
 
 /**
  * Data relevant to a specific sport
@@ -12,7 +12,7 @@ import { Gender, SportType, AgeCategory, WeightCategory, Expertise } from './enu
  * @strengths User's strengths in this sport
  * @weaknesses User's weaknesses in this sport
  */
-interface Sport {
+export interface Sport {
   name: string;
   uuid: string;
   sportType: SportType;
@@ -24,7 +24,7 @@ interface Sport {
   weaknesses: string[];
 }
 
-interface CompetitionParticipation {
+export interface CompetitionParticipation {
   competitionId: string;
   date: Date;
   result?: string;
