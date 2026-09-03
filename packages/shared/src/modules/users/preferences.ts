@@ -5,11 +5,11 @@ import {
   TravelProvider,
   TravelClass,
   TravelMode,
-} from './enums.js';
+  AgeCategory,
+  SportType,
+  WeightCategory
+} from '../../shared/enums.js';
 
-/**
- * Booking preferences for accommodation near a competition or training venue.
- */
 export interface BookingPreference {
   provider: BookingProvider;
   desiredPriceRange: [number, number];
@@ -18,13 +18,18 @@ export interface BookingPreference {
   desiredDistanceKm: number;
 }
 
-/**
- * Travel preferences for reaching the venue.
- */
 export interface TravelPreference {
   provider: TravelProvider;
   desiredPriceRange: [number, number];
   desiredTier: TravelClass;
   desiredType: TravelMode[];
   desiredDistanceKm: number;
+}
+
+export interface CompetitionPreference {
+  preferredSportType?: SportType;
+  preferredAgeCategory?: AgeCategory;
+  preferredWeightCategory?: WeightCategory;
+  preferredDistanceKm?: number;
+  preferredVenue?: string;
 }

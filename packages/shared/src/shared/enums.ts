@@ -4,6 +4,11 @@ export enum Gender {
   OTHER = 'other',
 }
 
+export enum Units {
+  METRIC = 'metric',
+  IMPERIAL = 'imperial',
+}
+
 export enum SportType {
   MARTIAL_ARTS = 'martial_arts',
   OUTDOOR = 'outdoor',
