@@ -6,6 +6,10 @@ interface Food {
   carbohydrates: number
   fat: number
 }
+
+/**
+ * Meal plan created by a user and optionally shared with other users.
+ */
 export interface MealPlan{
   id: string;
   userId: string;
@@ -40,8 +44,8 @@ export interface MealPlan{
 
   goal?: string;
   notes?: string;
-  startsAt?: string;
-  endsAt?: string;
-  createdAt: string;
-  updatedAt: string;
+  startsAt?: Date;
+  endsAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
