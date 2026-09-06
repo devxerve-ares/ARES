@@ -78,3 +78,10 @@ export enum TravelMode {
   FLIGHT = 'flight',
   CAR = 'car',
 }
+
+
+export enum TrainingType{
+  FUNCTIONAL = 'functional',
+  STRENGHT = 'strength',
+  SPORT = 'sport'
+}

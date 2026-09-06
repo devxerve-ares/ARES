@@ -7,3 +7,13 @@ export interface Competition {
   startDate?: Date;
   endDate?: Date;
 }
+
+/**
+ * Competition participation history scoped to a user-owned sport profile.
+ */
+export interface CompetitionParticipation {
+  competitionId: string;
+  date: Date;
+  result?: string;
+  position?: number;
+}
