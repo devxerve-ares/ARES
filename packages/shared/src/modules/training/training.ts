@@ -1,37 +1,81 @@
-import { TrainingType } from '../../shared/enums.js'
-import { Exercise } from './exercise.js'
-import { Sport } from '../sports/sport.js';
+import { TrainingType } from './enums.js';
+import type { ExerciseType, SpecificExercise } from './exercise.js';
 
-/**
- * Interface for an specific training Session
- * @duration is measured in minutes
- * @totalWeight weight lifted during the session
- * @routineId optional routine for this session
- */
-export interface Training{
+// Base training session
+export interface Training {
   userId: string;
-  sportId?: string;
-  competitionId?: string;
+  sportUuid?: string;
+  competitionUuid?: string;
   routineId?: string;
 
   type: TrainingType;
   date: Date;
   duration: number;
   exercises: TrainingExercise[];
-  totalWeight?: number;
 
   incidents?: string;
   satisfaction?: number;
   notes?: string;
 }
 
-export interface TrainingExercise{
-  exerciseId: string;
-  sets: TrainingSet[];
+// Base exercise within a session
+export interface TrainingExerciseBase {
+  uuid: string;
+  exerciseUuid: string;
+  type: ExerciseType;
+  exercise?: SpecificExercise;
 }
 
-export interface TrainingSet{
+// Exercise-specific measurements
+export interface StrengthTrainingSet {
   aimedRepetitions: number;
   repetitions: number;
   liftedWeight?: number;
 }
+
+export interface EnduranceTrainingSet {
+  aimedDuration: number;
+  finalDuration: number;
+  distance: number;
+}
+
+export interface MobilityTrainingSet {
+  aimedDuration?: number;
+  finalDuration?: number;
+  rangeOfMotion?: number;
+  repetitions?: number;
+}
+
+export interface SportTrainingSet {
+  aimedDuration?: number;
+  finalDuration?: number;
+  distance?: number;
+  speed?: number;
+  intensity?: number;
+}
+
+export interface StrengthTrainingExercise extends TrainingExerciseBase {
+  type: 'strength';
+  sets: [StrengthTrainingSet, ...StrengthTrainingSet[]];
+}
+
+export interface EnduranceTrainingExercise extends TrainingExerciseBase {
+  type: 'endurance';
+  sets: [EnduranceTrainingSet, ...EnduranceTrainingSet[]];
+}
+
+export interface MobilityTrainingExercise extends TrainingExerciseBase {
+  type: 'mobility';
+  sets: [MobilityTrainingSet, ...MobilityTrainingSet[]];
+}
+
+export interface SportTrainingExercise extends TrainingExerciseBase {
+  type: 'sport';
+  sets: [SportTrainingSet, ...SportTrainingSet[]];
+}
+
+export type TrainingExercise =
+  | StrengthTrainingExercise
+  | EnduranceTrainingExercise
+  | MobilityTrainingExercise
+  | SportTrainingExercise;

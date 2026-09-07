@@ -1,4 +1,5 @@
-import { SportType, AgeCategory, WeightCategory, Expertise } from '../../shared/enums.js';
+import { SportType, AgeCategory, WeightCategory } from '../../shared/enums.js';
+import { Expertise } from './enums.js';
 import { CompetitionParticipation } from '../competitions/competition.js';
 
 /**
@@ -6,16 +7,19 @@ import { CompetitionParticipation } from '../competitions/competition.js';
  *
  * The profile stores the user's personal characteristics and competition
  * history for this sport.
- * @uuid Is the stable identifier for cross-user sport relationships
+ * @sportUuid Is the stable identifier for cross-user sport relationships
+ * @userId
  */
 export interface Sport {
   name: string;
-  uuid: string;
+  sportUuid: string;
+  userId: string;
+  id: number;
   sportType: SportType;
   ageCategory: AgeCategory;
   weightCategory?: WeightCategory;
   expertise: Expertise;
-  participations?: CompetitionParticipation[];
+  participations: CompetitionParticipation[];
   strengths?: string[];
   weaknesses?: string[];
 }

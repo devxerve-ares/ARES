@@ -1,8 +1,9 @@
-import { Gender, Units } from '../../shared/enums.js';
+import { Gender } from './enums.js';
+import {Units} from '../../shared/enums.js'
 import { Sport } from '../sports/sport.js';
 import { BookingPreference, TravelPreference, CompetitionPreference } from './preferences.js';
 import { Competition } from '../competitions/competition.js';
-import { MealPlan } from '../nutrition/meal-planning/diet.js';
+import { MealPlan, WeeklyMealPlan } from '../nutrition/meal-planning/mealPlan.js';
 import { Subscription } from './subscription.js';
 
 /**
@@ -35,7 +36,8 @@ export interface User {
   travelPreference?: TravelPreference;
   pronouns?: string;
   mealPlan?: MealPlan;
-  mealPlanHistory?: MealPlan[];
+  weeklyMealPlan?: WeeklyMealPlan;
+  mealPlanHistory: WeeklyMealPlan[];
   units: Units;
   currentCompetition?: Competition;
   competitionInterests: CompetitionPreference[];

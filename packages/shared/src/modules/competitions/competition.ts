@@ -1,10 +1,9 @@
-import { SportType } from '../../shared/enums.js';
 export interface Competition {
   uuid: string;
   name: string;
-  sportType: SportType;
+  sportUuid: string;
   location?: string;
-  startDate?: Date;
+  startDate: Date;
   endDate?: Date;
 }
 
@@ -12,7 +11,8 @@ export interface Competition {
  * Competition participation history scoped to a user-owned sport profile.
  */
 export interface CompetitionParticipation {
-  competitionId: string;
+  competitionUuid: string;
+  userId: string;
   date: Date;
   result?: string;
   position?: number;

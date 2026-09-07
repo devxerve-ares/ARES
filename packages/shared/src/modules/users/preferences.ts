@@ -1,14 +1,5 @@
-import {
-  BookingProvider,
-  FacilityType,
-  AccommodationType,
-  TravelProvider,
-  TravelClass,
-  TravelMode,
-  AgeCategory,
-  SportType,
-  WeightCategory
-} from '../../shared/enums.js';
+import { BookingProvider, FacilityType, AccommodationType, TravelProvider, TravelClass, TravelMode} from './enums.js';
+import { AgeCategory, SportType, WeightCategory } from '../../shared/enums.js';
 
 export interface BookingPreference {
   provider: BookingProvider;
