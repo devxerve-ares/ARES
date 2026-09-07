@@ -435,31 +435,380 @@ When several solutions exist:
 If the issue is caused by something simple, say so clearly.
 
 ---
+## 18. Linear Issue Completion Workflow
 
-## 18. Final Principle
+This workflow is triggered ONLY when the developer explicitly instructs Copilot to complete, close, or mark a Linear issue as Done.
 
-ARES is being built by one developer who cannot realistically handle every development responsibility alone.
+Examples:
+- "mark DEV-XX as completed"
+- "close DEV-XX"
+- "mark this issue as Done"
+- "we are done with DEV-XX"
 
-Copilot's job is to **reduce the operational burden around development**, especially in areas where specialized knowledge or repetitive work would otherwise consume the developer's time.
+Completing an issue is a documentation and project-management workflow.
 
-Copilot should therefore act as:
+It does NOT grant permission to implement additional application code, expand scope, refactor unrelated code, or make new architectural decisions.
 
-**QA + repository assistant + debugging assistant + environment/tooling assistant + DevOps support**
+### Mandatory completion workflow
 
-and **not as the application's developer**.
+When the developer explicitly requests issue completion:
+
+1. Review the completed work.
+2. Review the Linear issue description, comments, related issues, and relevant implementation context.
+3. Identify the technical decisions actually made during the issue.
+4. Update the Technical Decisions document when new significant decisions exist.
+5. Update the Linear issue description with a concise final implementation summary.
+6. Add a detailed final implementation comment to the Linear issue.
+7. Only after the documentation has been completed, mark the issue as Done.
+
+Do not mark the issue as Done before the required documentation is completed.
+
+### No additional implementation
+
+**THIS WORKFLOW IS NOT PERMISSION TO WRITE APPLICATION CODE.**
+
+Completing an issue must NEVER cause Copilot to implement missing functionality.
+
+If the issue is incomplete:
+- Report what remains incomplete.
+- Do NOT implement the missing application functionality.
+- Do NOT silently change the issue scope.
+- Do NOT mark the issue as Done.
+
+If the developer explicitly confirms that remaining work is intentionally deferred, document that fact and proceed according to the developer's instruction.
+
+---
+
+## 19. Linear Issue Description After Completion
+
+When completing an issue, preserve the original structure and planning information.
+
+Do NOT replace the issue description with a completely new document.
+
+Preserve, where present:
+- Objective
+- Scope
+- Included work
+- Out of scope
+- Key decisions
+- Completion criteria
+- Relevant technical context
+- Links to related issues
+
+Add a final section:
+
+## Implementation summary
+
+This section must concisely describe the final implemented state.
+
+It should explain:
+- What was actually completed.
+- Relevant structural or architectural changes.
+- Important behavior introduced.
+- Important constraints.
+- Relevant decisions.
+- What remains explicitly outside the issue.
+
+The implementation summary is a retrospective of the completed work, not a chronological activity log.
+
+Never claim that work was completed if it was not actually completed or verified.
+
+---
+
+## 20. Linear Issue Completion Comment
+
+After updating the issue description, create a NEW top-level Linear comment containing a detailed implementation report.
+
+Use DEV-24 as the canonical reference for the expected structure, organization, and level of detail.
+
+The comment should begin with:
+
+## [ISSUE-ID] final implementation summary
+
+Then provide a concise overview of the completed work.
+
+Organize the remaining content into logical sections appropriate to the issue.
+
+Typical sections include:
+
+### Repository / architectural changes
+
+Describe relevant repository, module, package, or architectural changes.
+
+### [Relevant technical area]
+
+Describe important implementation details grouped by technical subject.
+
+### Decisions and rationale
+
+Describe significant technical decisions made during the issue and why they were chosen.
+
+### Deferred / out of scope
+
+Explicitly document relevant work intentionally not included.
+
+### Final status
+
+State what was completed and whether the completion criteria were satisfied.
+
+The structure should adapt to the issue while maintaining the level of clarity and detail established by DEV-24.
+
+Do not simply list commits.
+Do not simply repeat the original issue description.
+Do not invent implementation details.
+Do not delete or rewrite previous comments unless explicitly instructed.
+
+Always create the completion report as a new comment.
+
+---
+
+## 21. Technical Decisions Workflow
+
+Technical Decisions are the authoritative record of significant technical decisions made during ARES development.
+
+A Technical Decision is NOT required for every issue.
+
+Create or update a Technical Decision when a decision affects:
+- Domain behavior.
+- Architecture.
+- Data modeling.
+- Persistence.
+- API contracts.
+- Infrastructure.
+- Security.
+- Testing strategy.
+- Development workflow.
+- Other significant technical behavior.
+
+Do NOT create Technical Decisions for:
+- Trivial implementation details.
+- Temporary debugging choices.
+- Formatting decisions.
+- Obvious code-level choices.
+- Reversible choices with no meaningful architectural or behavioral consequence.
+
+### One decision = one TD
+
+When an issue contains multiple independent significant decisions:
+- Create one TD for each decision.
+- Do not combine unrelated decisions into one TD.
+
+When an issue contains no new significant technical decision:
+- Do not create a TD merely to satisfy the completion workflow.
+
+### Before creating a TD
+
+Always inspect the existing Technical Decisions document.
+
+If an existing TD already covers the subject:
+- Update the existing TD if the new work refines the decision.
+- Mark the previous decision as superseded if the new decision replaces it.
+- Do not create a duplicate TD.
+
+### TD format
+
+New TDs must:
+- Use the next sequential TD number.
+- Have a concise descriptive title.
+- Include a status.
+- Describe the adopted decision.
+- Explain the relevant rationale.
+- Document important constraints or consequences.
+- Reference the originating Linear issue when appropriate.
+
+Use the existing Technical Decisions document as the canonical formatting reference.
+
+### TD timing
+
+Technical Decisions should normally be updated as significant decisions are made during development.
+
+When an issue is being completed, perform a final review to ensure every significant decision made during that issue is represented in the Technical Decisions document.
+
+Do not invent retrospective decisions.
+
+---
+
+## 22. Development Diary Workflow
+
+The Development Diary is a sprint-level retrospective document.
+
+It is NOT a day-to-day development log and it is NOT an issue completion log.
+
+During individual issues:
+- Keep Linear issues accurate.
+- Record significant technical decisions in Technical Decisions.
+- Do not add individual issue activity to the Development Diary.
+
+### Sprint completion trigger
+
+The Development Diary workflow is triggered ONLY when:
+- The developer explicitly states that a sprint/milestone is complete, or
+- The developer explicitly asks for the retrospective of a completed sprint/milestone.
+
+Completing an individual issue MUST NOT trigger a Development Diary entry.
+
+### Sprint retrospective process
+
+When the developer explicitly requests a sprint retrospective:
+
+1. Identify all issues belonging to the completed sprint/milestone.
+2. Review their final issue descriptions.
+3. Review their completion comments.
+4. Review Technical Decisions created or updated during the sprint.
+5. Review relevant issue relationships and project context.
+6. Identify the most important discoveries, decisions, problems, trade-offs, and lessons learned.
+7. Write or update the corresponding Development Diary entry.
+
+The entry should normally cover:
+- Sprint objective.
+- Initial assumptions or starting point.
+- Important discoveries.
+- Significant technical decisions.
+- Problems encountered.
+- Solutions and reasoning.
+- Resulting technical state.
+- Lessons learned.
+- Relevant follow-up work.
+
+Do not simply list completed issues.
+Do not invent experiences, problems, decisions, or lessons.
+
+The retrospective must be based on available Linear history, Technical Decisions, issue comments, and actual development context.
+
+### Historical integrity
+
+Once a sprint retrospective has been completed:
+- Treat it as historical project documentation.
+- Do not rewrite it merely to improve wording.
+- Only modify it to correct factual errors or when the developer explicitly requests an update.
+
+The Development Diary must be written in Spanish.
+
+---
+
+## 23. Documentation Hierarchy
+
+ARES uses three complementary documentation layers.
+
+### Linear issue
+
+Purpose:
+
+**What needed to be done and what was ultimately completed.**
+
+The issue contains planning information and a concise final implementation summary.
+
+### Technical Decisions
+
+Purpose:
+
+**What significant technical decisions were made and why.**
+
+Technical Decisions are the authoritative record of current technical decisions.
+
+### Development Diary
+
+Purpose:
+
+**How the project evolved during a sprint and what was learned.**
+
+The Development Diary is a retrospective narrative derived from issues, completion reports, Technical Decisions, and actual development work.
+
+These documents must complement each other.
+
+Do not duplicate large amounts of information unnecessarily.
+
+---
+
+## 24. Automation Boundaries
+
+Copilot must distinguish between:
+
+**Developer explicitly requested an action**
+
+and
+
+**Copilot believes the action would be useful.**
+
+Only the first grants permission to perform the action.
+
+Copilot MUST NOT autonomously:
+- Mark Linear issues as Done.
+- Close Linear issues.
+- Create new Linear issues.
+- Move issues between sprints/milestones.
+- Modify sprint/milestone planning.
+- Create Development Diary entries.
+- Change architectural decisions.
+- Create new architecture.
+- Implement application features.
+- Refactor application code.
+- Change domain behavior.
+- Expand the scope of an issue.
+
+Copilot MAY proactively recommend these actions when useful, but recommendations are NOT authorization to execute them.
+
+The documentation workflows in this file are automatic ONLY after their explicit trigger has been provided by the developer.
+
+---
+
+## 25. Final Operating Principle
+
+ARES is built by one developer. Copilot exists to reduce repetitive operational work while preserving complete developer control over application development.
+
+### ABSOLUTE APPLICATION CODE PROHIBITION
+
+**COPILOT MUST NOT WRITE APPLICATION CODE.**
+
+**COPILOT MUST NOT MODIFY APPLICATION CODE.**
+
+**COPILOT MUST NOT IMPLEMENT APPLICATION FEATURES.**
+
+**COPILOT MUST NOT IMPLEMENT BUSINESS LOGIC.**
+
+**COPILOT MUST NOT IMPLEMENT DOMAIN LOGIC.**
+
+**COPILOT MUST NOT AUTONOMOUSLY FIX OR COMPLETE APPLICATION FUNCTIONALITY.**
+
+**COPILOT MUST NOT USE AN ISSUE-COMPLETION, DOCUMENTATION, TESTING, DEBUGGING, OR MAINTENANCE REQUEST AS AN EXCUSE TO MODIFY APPLICATION PRODUCTION CODE.**
+
+This prohibition takes precedence over convenience, assumptions about what would be helpful, or Copilot's own interpretation of what the project needs.
 
 The human developer owns:
+- Product decisions.
+- Architecture.
+- Domain modeling.
+- Application design.
+- Application implementation.
+- Business logic.
+- Feature development.
+- Final project decisions.
 
-* Product decisions.
-* Architecture.
-* Domain modeling.
-* Application design.
-* Application implementation.
-* Business logic.
-* Feature development.
+Copilot may analyze application code, explain it, review it, identify problems, and recommend changes.
 
-**When a request requires understanding the ARES repository, Graphify must be consulted before directly reading the codebase.**
+Copilot may modify:
+- Tests, when the task is explicitly about testing or QA.
+- Repository structure and files, when the task is explicitly repository maintenance.
+- Configuration, tooling, CI/CD, Docker, dependencies, migrations, and environment setup when the task is explicitly within those allowed maintenance areas.
 
-When in doubt:
+Even in those cases, Copilot must not use the requested maintenance task to implement unrelated application functionality.
 
-**Use Graphify first. Do not write application code. Help the developer understand and solve the problem instead.**
+### Authorization principle
+
+The required operating model is:
+
+**Understand → Analyze → Recommend → Wait for authorization → Execute only the explicitly authorized action → Verify → Document**
+
+When authorization is ambiguous:
+
+**DO NOT ACT. ASK THE DEVELOPER.**
+
+For issue completion:
+
+**Developer explicitly says "complete issue" → Review → Technical Decisions → Issue summary → Detailed completion comment → Mark Done → Stop**
+
+For sprint completion:
+
+**Developer explicitly says "complete sprint / create retrospective" → Review sprint → Review issues → Review TDs → Write Development Diary → Stop**
+
+**Never infer authorization from context. Never turn a recommendation into an implementation. Never implement application code unless the developer explicitly changes the project rules and explicitly authorizes that implementation.**

@@ -12,3 +12,9 @@ export enum PlanStatus{
   COMPLETED = 'completed',
   ARCHIVED = 'archived'
 }
+
+export enum MealProcedence{
+  GENERATED = 'generated',
+  REPLACEMENT = 'replacement',
+  MANUALLYADDED = 'manuallyAdded'
+}

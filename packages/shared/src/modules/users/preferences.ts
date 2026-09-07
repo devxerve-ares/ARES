@@ -1,6 +1,6 @@
 import { BookingProvider, FacilityType, AccommodationType, TravelProvider, TravelClass, TravelMode} from './enums.js';
-import { AgeCategory, SportType, WeightCategory } from '../../shared/enums.js';
-
+import { AgeCategory, WeightCategory } from '../../shared/enums.js';
+import { User } from './user.js';
 export interface BookingPreference {
   provider: BookingProvider;
   desiredPriceRange: [number, number];
@@ -14,13 +14,11 @@ export interface TravelPreference {
   desiredPriceRange: [number, number];
   desiredTier: TravelClass;
   desiredType: TravelMode[];
-  desiredDistanceKm: number;
 }
 
 export interface CompetitionPreference {
-  preferredSportType?: SportType;
+  preferredSport: string;
   preferredAgeCategory?: AgeCategory;
   preferredWeightCategory?: WeightCategory;
-  preferredDistanceKm?: number;
-  preferredVenue?: string;
+  preferredLocation?: string;
 }

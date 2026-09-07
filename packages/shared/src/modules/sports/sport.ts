@@ -18,7 +18,7 @@ export interface Sport {
   sportType: SportType;
   ageCategory: AgeCategory;
   weightCategory?: WeightCategory;
-  expertise: Expertise;
+  expertise?: Expertise;
   participations: CompetitionParticipation[];
   strengths?: string[];
   weaknesses?: string[];

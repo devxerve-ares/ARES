@@ -14,6 +14,6 @@ export interface CompetitionParticipation {
   competitionUuid: string;
   userId: string;
   date: Date;
-  result?: string;
   position?: number;
+  notes?: string;
 }
