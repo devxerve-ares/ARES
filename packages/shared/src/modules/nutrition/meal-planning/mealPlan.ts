@@ -1,4 +1,5 @@
-import { MealType, PlanStatus } from './enums.js';
+import { MealType, PlanStatus, MealProcedence } from './enums.js';
+import {AllergyEntry,IntoleranceEntry} from './types.js';
 
 export interface Food {
   uuid: string;
@@ -22,14 +23,11 @@ export interface MealIngredient {
  */
 export interface MealPlan{
   uuid: string;
-  userId: string;
+  creatorId: string;
 
-
-
-  targetMacros?: {
+  targetDailyMacros?: {
     targetCalories?: number;
     minimumCalories?: number;
-    maximumCalories?: number;
     proteinGrams?: number;
     carbsGrams?: number;
     fatGrams?: number;
@@ -42,8 +40,8 @@ export interface MealPlan{
   introducedFoods: Food[];
   dislikedFoods: Food[];
 
-  allergens: string[];
-  intolerances: string[];
+  allergens: AllergyEntry[];
+  intolerances: IntoleranceEntry[];
   medicalRestrictions: string[];
 
   mealsPerDay?: number;
@@ -97,8 +95,9 @@ export interface MealDay{
 export interface Meal{
   name: string;
   type: MealType;
-  ingredients: MealIngredient[];
+  ingredients?: MealIngredient[];
   servings: number;
+  procedence: MealProcedence;
   macros?: {
     calories: number;
     proteinGrams?: number;
@@ -107,6 +106,6 @@ export interface Meal{
     fiberGrams?: number;
     vitaminGrams?: number;
   }
-  preparationTimeMinutes: number;
+  preparationTimeMinutes?: number;
   notes?: string;
 }
