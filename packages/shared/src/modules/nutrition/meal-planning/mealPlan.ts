@@ -1,4 +1,5 @@
 import { MealType, PlanStatus, MealProcedence } from './enums.js';
+import {AllergyEntry,IntoleranceEntry} from './types.js';
 
 export interface Food {
   uuid: string;
@@ -39,8 +40,8 @@ export interface MealPlan{
   introducedFoods: Food[];
   dislikedFoods: Food[];
 
-  allergens: string[];
-  intolerances: string[];
+  allergens: AllergyEntry[];
+  intolerances: IntoleranceEntry[];
   medicalRestrictions: string[];
 
   mealsPerDay?: number;
