@@ -1,9 +1,3 @@
-export type ExerciseType =
-  | 'strength'
-  | 'endurance'
-  | 'mobility'
-  | 'sport';
-
 export interface Exercise {
   uuid: string;
   name: string;
@@ -38,3 +32,9 @@ export type SpecificExercise =
   | EnduranceExercise
   | MobilityExercise
   | SportExercise;
+
+export type ExerciseType =
+  | 'strength'
+  | 'endurance'
+  | 'mobility'
+  | 'sport';
