@@ -1,7 +1,6 @@
 import { TrainingType } from './enums.js';
-import type { ExerciseType, SpecificExercise } from './exercise.js';
+import type { ExerciseType } from './types.js';
 
-// Base training session
 export interface Training {
   userId: string;
   sportUuid?: string;
@@ -18,15 +17,13 @@ export interface Training {
   notes?: string;
 }
 
-// Base exercise within a session
 export interface TrainingExerciseBase {
   uuid: string;
   exerciseUuid: string;
   type: ExerciseType;
-  exercise?: SpecificExercise;
+  restTime: number;
 }
 
-// Exercise-specific measurements
 export interface StrengthTrainingSet {
   aimedRepetitions: number;
   repetitions: number;
