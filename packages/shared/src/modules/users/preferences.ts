@@ -1,6 +1,6 @@
 import { BookingProvider, FacilityType, AccommodationType, TravelProvider, TravelClass, TravelMode} from './enums.js';
 import { AgeCategory, WeightCategory } from '../../shared/enums.js';
-import { User } from './user.js';
+
 export interface BookingPreference {
   provider: BookingProvider;
   desiredPriceRange: [number, number];

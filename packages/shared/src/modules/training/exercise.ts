@@ -1,9 +1,4 @@
-export type ExerciseType =
-  | 'strength'
-  | 'endurance'
-  | 'mobility'
-  | 'sport';
-
+import { ExerciseType } from './types.js';
 export interface Exercise {
   uuid: string;
   name: string;
@@ -16,25 +11,3 @@ export interface Exercise {
   imageUrl?: string;
   videoUrl?: string;
 }
-
-export interface StrengthExercise extends Exercise {
-  type: 'strength';
-}
-
-export interface EnduranceExercise extends Exercise {
-  type: 'endurance';
-}
-
-export interface MobilityExercise extends Exercise {
-  type: 'mobility';
-}
-
-export interface SportExercise extends Exercise {
-  type: 'sport';
-}
-
-export type SpecificExercise =
-  | StrengthExercise
-  | EnduranceExercise
-  | MobilityExercise
-  | SportExercise;

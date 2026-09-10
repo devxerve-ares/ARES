@@ -11,10 +11,12 @@ import { CompetitionParticipation } from '../competitions/competition.js';
  * @userId
  */
 export interface Sport {
+  // Metadata
   name: string;
   sportUuid: string;
-  userId: string;
   id: number;
+  userId: string;
+
   sportType: SportType;
   ageCategory: AgeCategory;
   weightCategory?: WeightCategory;
